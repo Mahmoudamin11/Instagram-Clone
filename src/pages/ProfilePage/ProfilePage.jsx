@@ -5,7 +5,6 @@ import ProfilePosts from "../../components/Profile/ProfilePosts";
 import useGetUserProfileByUsername from "../../hooks/useGetUserProfileByUsername";
 import { useParams } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
-import EditProfile from "../../components/Profile/EditProfile";
 
 const ProfilePage = () => {
 	const { username } = useParams();
@@ -53,7 +52,6 @@ const ProfileHeaderSkeleton = () => {
 				<Skeleton height='12px' width='150px' />
 				<Skeleton height='12px' width='100px' />
 			</VStack>
-			
 		</Flex>
 	);
 };

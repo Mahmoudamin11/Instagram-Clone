@@ -24,11 +24,10 @@ import useAuthStore from "../../store/authStore";
 import useShowToast from "../../hooks/useShowToast";
 import { useState } from "react";
 import { deleteObject, ref } from "firebase/storage";
-import { fireStore, storage } from "../../firebase/firebase";
+import { firestore, storage } from "../../firebase/firebase";
 import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import usePostStore from "../../store/postStore";
 import Caption from "../Comment/Caption";
-// import Caption from "../Comment/Caption";
 
 const ProfilePost = ({ post }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -46,8 +45,8 @@ const ProfilePost = ({ post }) => {
 		try {
 			const imageRef = ref(storage, `posts/${post.id}`);
 			await deleteObject(imageRef);
-			const userRef = doc(fireStore, "users", authUser.uid);
-			await deleteDoc(doc(fireStore, "posts", post.id));
+			const userRef = doc(firestore, "users", authUser.uid);
+			await deleteDoc(doc(firestore, "posts", post.id));
 
 			await updateDoc(userRef, {
 				posts: arrayRemove(post.id),
