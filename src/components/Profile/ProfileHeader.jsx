@@ -1,13 +1,17 @@
+
 import { Avatar, AvatarGroup, Button, Flex, Text, VStack, useDisclosure } from "@chakra-ui/react";
 import useAuthStore from "../../store/authStore";
 import useUserProfileStore from "../../store/userProfileStore";
 import EditProfile from "./EditProfile";
+import useFolllowUser from "../../hooks/useFolllowUser";
 
 const ProfileHeader = () => {
 	const { userProfile } = useUserProfileStore();
 	const authUser = useAuthStore((state) => state.user);
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	
+	const { isFollowing, isUpdating, handleFollowUser } = useFolllowUser(userProfile?.uid);
+	const visitingOwnProfileAndAuth = authUser && authUser.username === userProfile.username;
+	const visitingAnotherProfileAndAuth = authUser && authUser.username !== userProfile.username;
 	return (
 		<Flex gap={{ base: 4, sm: 10 }} py={10} direction={{ base: "column", sm: "row" }}>
 			<AvatarGroup size={{ base: "xl", md: "2xl" }} justifySelf={"center"} alignSelf={"flex-start"} mx={"auto"}>

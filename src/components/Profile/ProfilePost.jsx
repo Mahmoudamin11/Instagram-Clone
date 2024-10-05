@@ -24,7 +24,7 @@ import useAuthStore from "../../store/authStore";
 import useShowToast from "../../hooks/useShowToast";
 import { useState } from "react";
 import { deleteObject, ref } from "firebase/storage";
-import { firestore, storage } from "../../firebase/firebase";
+import { fireStore, storage } from "../../firebase/firebase";
 import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import usePostStore from "../../store/postStore";
 import Caption from "../Comment/Caption";
@@ -45,8 +45,8 @@ const ProfilePost = ({ post }) => {
 		try {
 			const imageRef = ref(storage, `posts/${post.id}`);
 			await deleteObject(imageRef);
-			const userRef = doc(firestore, "users", authUser.uid);
-			await deleteDoc(doc(firestore, "posts", post.id));
+			const userRef = doc(fireStore, "users", authUser.uid);
+			await deleteDoc(doc(fireStore, "posts", post.id));
 
 			await updateDoc(userRef, {
 				posts: arrayRemove(post.id),
@@ -133,7 +133,7 @@ const ProfilePost = ({ post }) => {
 							<Flex flex={1} flexDir={"column"} px={10} display={{ base: "none", md: "flex" }}>
 								<Flex alignItems={"center"} justifyContent={"space-between"}>
 									<Flex alignItems={"center"} gap={4}>
-										<Avatar src={userProfile.profilePicURL} size={"sm"} name='As a Programmer' />
+										<Avatar src={userProfile?.profilePicURL || '/user.png'} size={"sm"} name='As a Programmer' />
 										<Text fontWeight={"bold"} fontSize={12}>
 											{userProfile.username}
 										</Text>
