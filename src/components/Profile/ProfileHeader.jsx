@@ -10,7 +10,8 @@ const ProfileHeader = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const {isFollowing, isUpdating, handleFollowUser} = useFolllowUser(userProfile.uid)
-
+    console.log(userProfile);
+    
     const isVisitingHisOwnProfile = authUser && authUser.username === userProfile.username ;
     const isVisitingAnotherProfile = authUser && authUser.username !== userProfile.username ;
     
@@ -28,7 +29,7 @@ const ProfileHeader = () => {
 					alignItems={"center"}
 					w={"full"}
 				>
-                    <Text fontSize={{ base: "sm", md: "lg" }}>{userProfile.username}</Text>
+                    <Text fontSize={{ base: "sm", md: "lg" }}>{userProfile?.username}</Text>
                     {
                         isVisitingHisOwnProfile &&
                             <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
