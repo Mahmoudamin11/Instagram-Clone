@@ -15,6 +15,7 @@ const GoogleAuth = ({ prefix }) => {
 			const newUser = await signInWithGoogle();
 			if (!newUser && error) {
 				showToast("Error", error.message, "error");
+				console.log("Here is the error message: ");
 				return;
 			}
 			const userRef = doc(fireStore, "users", newUser.user.uid);
@@ -45,6 +46,7 @@ const GoogleAuth = ({ prefix }) => {
 			}
 		} catch (error) {
 			showToast("Error", error.message, "error");
+			console.log("Here is the error message in catch: ");
 		}
 	};
 
