@@ -4,7 +4,7 @@ import SuggestedUsers from "../../components/SuggestedUsers/SuggestedUsers";
 
 const HomePage = () => {
 	return (
-		<Container maxW={"container.lg"} overflowX={"hidden"}>
+		<Container maxW={{base:"container.md",md:"container.lg"}} overflowX={"hidden"}>
 			<Flex gap={20}>
 				<Box flex={2} py={10}>
 					<FeedPosts />

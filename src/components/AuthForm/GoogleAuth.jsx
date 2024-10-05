@@ -17,7 +17,7 @@ const GoogleAuth = ({ prefix }) => {
 				showToast("Error", error.message, "error");
 				return;
 			}
-			const userRef = doc(fireStore, "users", newUser.user.uid);
+			const userRef = doc(fireStore, "users", newUser?.user.uid);
 			const userSnap = await getDoc(userRef);
 
 			if (userSnap.exists()) {
