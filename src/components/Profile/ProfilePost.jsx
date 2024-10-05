@@ -135,11 +135,11 @@ const ProfilePost = ({ post }) => {
 									<Flex alignItems={"center"} gap={4}>
 										<Avatar src={userProfile?.profilePicURL || '/user.png'} size={"sm"} name='As a Programmer' />
 										<Text fontWeight={"bold"} fontSize={12}>
-											{userProfile.username}
+											{userProfile?.username || "User"}
 										</Text>
 									</Flex>
 
-									{authUser?.uid === userProfile.uid && (
+									{authUser?.uid === userProfile?.uid && (
 										<Button
 											size={"sm"}
 											bg={"transparent"}
